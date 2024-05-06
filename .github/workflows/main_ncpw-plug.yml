@@ -51,7 +51,7 @@ jobs:
 
         steps:
             - name: Download artifact from build job
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4.1.7
               with:
                   name: node-app
 
@@ -59,7 +59,7 @@ jobs:
               run: unzip release.zip
 
             - name: Login to Azure
-              uses: azure/login@v1
+              uses: azure/login@v2.1.0
               with:
                   client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DF6E43AECE974FE6BFAEA10DA9A074E7 }}
                   tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3660450AE45F4DFEB91605AC87DCECFB }}
@@ -67,7 +67,7 @@ jobs:
 
             - name: "Deploy to Azure Web App"
               id: deploy-to-webapp
-              uses: azure/webapps-deploy@v2
+              uses: azure/webapps-deploy@v3.0.1
               with:
                   app-name: "ncpw-plug"
                   slot-name: "Production"
