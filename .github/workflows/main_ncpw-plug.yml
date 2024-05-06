@@ -28,7 +28,7 @@ jobs:
 
       - name: pnpm install and build
         run: |
-          pnpm install
+          pnpm install --frozen-lockfile
           pnpm run build
 
       - name: Zip artifact for deployment
