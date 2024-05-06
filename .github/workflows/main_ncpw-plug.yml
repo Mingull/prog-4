@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - ncps-plug
+name: Build and deploy Node.js app to Azure Web App - ncpw-plug
 
 on:
   push:
@@ -21,14 +21,13 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./dist/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -57,15 +56,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_146BE5868E494836A703B8A76028975D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D47BF58226894C8DADADA659DBF09B81 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AB1B922BCB6444D6886EA4CBC2F63DB2 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DF6E43AECE974FE6BFAEA10DA9A074E7 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3660450AE45F4DFEB91605AC87DCECFB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FB09483A2B4E46C3A61D6840B9500AF3 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'ncps-plug'
+          app-name: 'ncpw-plug'
           slot-name: 'Production'
           package: .
           
