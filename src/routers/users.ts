@@ -1,6 +1,5 @@
-import { database } from "../db/index.ts";
-import { Data } from "../db/types.ts";
 import { Router } from "express";
+import { database } from "../db/index";
 
 export const router = Router();
 

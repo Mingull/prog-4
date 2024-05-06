@@ -1,4 +1,4 @@
-import { Data, Database } from "./types";
+import type { Data, Database } from "./types";
 
 export const database: Database = {
 	_data: [
@@ -84,7 +84,7 @@ export const database: Database = {
 				if (!user) return callback({ err: { message: `User with id '${id}' could not be found` }, data: null });
 
 				this._data = this._data.filter((user) => user.id !== id);
-                this._index = this._data.length;
+				this._index = this._data.length;
 
 				callback({ err: null, data: user });
 			}

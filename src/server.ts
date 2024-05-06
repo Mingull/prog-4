@@ -1,8 +1,6 @@
 import dotenv from "dotenv";
 import express from "express";
-import { fetchPosts } from "./functions.ts";
-import { router } from "./routers/users.ts";
-import { database } from "./db/index.ts";
+import { router } from "./routers/users";
 dotenv.config();
 
 const app = express();
