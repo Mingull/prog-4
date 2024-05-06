@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 	});
 });
 
-router.post("/register", (req, res) => {
+router.post("/", (req, res) => {
 	database.add(req.body, ({ data, err }) => {
 		if (err) {
 			res.json({ status: 500, error: err });

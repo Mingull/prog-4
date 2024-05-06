@@ -1,7 +1,7 @@
 {
 	"name": "test_server",
 	"version": "1.0.0",
-	"main": "index.js",
+	"main": "dist/server.js",
 	"scripts": {
 		"build": "tsup",
 		"start": "node dist/server.js",
