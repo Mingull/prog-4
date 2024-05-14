@@ -1,31 +1,37 @@
 import dotenv from "dotenv";
 import express from "express";
-import { router } from "./routers/users";
+import { authRouter, userRouter } from "./routes/index.js";
 dotenv.config();
 
+const baseurl = (process.env.NODE_ENV = "development"
+	? "http://localhost:3000"
+	: "https://ncpw-plug.azurewebsites.net");
 const app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.get("/", (req, res) => {
+app.get("/api/info", (req, res) => {
 	res.json({
 		status: 200,
 		result: {
 			message: "Hier zijn de beschikbare endpoints:",
 			links: {
-				users: { method: "GET", url: "https://ncpw-plug.azurewebsites.net/users" },
-				create_user: { method: "POST", url: "https://ncpw-plug.azurewebsites.net/users/" },
-				specific_user: { method: "GET", url: "https://ncpw-plug.azurewebsites.net/users/{id}" },
-				update_user: { method: "PUT", url: "https://ncpw-plug.azurewebsites.net/users/{id}" },
-				delete_user: { method: "DELETE", url: "https://ncpw-plug.azurewebsites.net/users/{id}" },
+				users: {
+					all: { method: "GET", url: `${baseurl}/api/user` },
+					create: { method: "POST", url: `${baseurl}/api/user` },
+					one: { method: "GET", url: `${baseurl}/api/user/{id}` },
+					update: { method: "PUT", url: `${baseurl}/api/user/{id}` },
+					delete: { method: "DELETE", url: `${baseurl}/api/user/{id}` },
+				},
 			},
 		},
 	});
 });
 
-app.use("/users", router);
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(process.env.PORT, () => {
-	console.log("Server is running on port " + process.env.PORT);
+	console.info(`Server is running on port ${process.env.PORT}`);
 });
