@@ -7,7 +7,7 @@
 		"start": "node dist/server.js",
 		"dev": "tsup --watch --onSuccess \"node ./dist/server.js\"",
 		"dev:old": "nodemon  -e \"ts\" --exec \"node --loader ts-node/esm ./src/server.ts\"",
-		"test": "mocha --reporter spec --exit"
+		"test": "node ./node_modules/mocha/bin/mocha --reporter spec --exit"
 	},
 	"keywords": [],
 	"author": "Mingull",
