@@ -6,7 +6,7 @@ dotenv.config();
 const baseurl = (process.env.NODE_ENV = "development"
 	? "http://localhost:3000"
 	: "https://ncpw-plug.azurewebsites.net");
-const app = express();
+export const app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded

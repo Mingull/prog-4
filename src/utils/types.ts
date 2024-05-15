@@ -8,6 +8,6 @@ export type User = {
 	street: string;
 	city: string;
 	phoneNumber: string;
-	roles: [];
+	roles: string[];
 };
 export type InsertUser = Omit<Partial<User>, "id">;

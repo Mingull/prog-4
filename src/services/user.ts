@@ -1,11 +1,11 @@
-import type { QueryError } from "mysql2";
+import type { QueryError, QueryResult } from "mysql2";
 import database from "../db/index.js";
 import type { User } from "../utils/types.js";
 
 export const userService = {
 	create: async (
 		user: User,
-		callback: ({ error, success }: { error: Error | null; success: { message: string } | null }) => void
+		callback: ({ error, success }: { error: Error | null; success: { message: string; data: User } | null }) => void
 	) => {
 		try {
 			const conn = await database.getConnection();
@@ -14,20 +14,22 @@ export const userService = {
 				[
 					user.firstName,
 					user.lastName,
-					user.isActive,
+					user.isActive ? 1 : 0,
 					user.emailAddress,
-					user.password,
+					user.password || "secret",
 					user.phoneNumber,
-					user.roles.map((role) => role).join(","),
-					user.street,
-					user.city,
+					Array.isArray(user.roles) ? user.roles.join(",") : "",
+					user.street || "",
+					user.city || "",
 				]
 			);
+			const [res] = await conn.query("SELECT * from `user` WHERE `id` = LAST_INSERT_ID();");
 			conn.release();
 			callback({
 				error: null,
 				success: {
 					message: `User created success.`,
+					data: parseEmailAddress(res),
 				},
 			});
 		} catch (err: unknown) {
@@ -88,4 +90,21 @@ export const userService = {
 			callback({ error: err as NodeJS.ErrnoException, success: null });
 		}
 	},
+};
+
+const parseEmailAddress = (res: QueryResult): User => {
+	const parsedRes = Array.isArray(res) ? res[0] : res;
+
+	return {
+		id: (parsedRes as unknown as { id: number }).id,
+		firstName: (parsedRes as unknown as { firstName: string }).firstName,
+		lastName: (parsedRes as unknown as { lastName: string }).lastName,
+		emailAddress: (parsedRes as unknown as { emailAdress: string }).emailAdress,
+		isActive: (parsedRes as unknown as { isActive: number }).isActive === 1,
+		password: (parsedRes as unknown as { password: string }).password,
+		phoneNumber: (parsedRes as unknown as { phoneNumber: string }).phoneNumber,
+		roles: (parsedRes as unknown as { roles: string }).roles.split(","),
+		city: (parsedRes as unknown as { city: string }).city,
+		street: (parsedRes as unknown as { street: string }).street,
+	};
 };

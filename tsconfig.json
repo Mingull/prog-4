@@ -5,7 +5,7 @@
 		"target": "es2022",
 		"moduleDetection": "force",
 		"moduleResolution": "NodeNext",
-		"verbatimModuleSyntax": true,
+		"verbatimModuleSyntax": false,
 		"allowJs": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,

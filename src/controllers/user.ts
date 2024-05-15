@@ -8,17 +8,18 @@ export const userController = {
 		console.info("Creating user...", user.firstName, user.lastName);
 		userService.create(user, ({ error, success }) => {
 			if (error) {
-				console.log(error);
 				return res.json({
 					status: (error as unknown as { status: number }).status,
 					message: error.message,
 					data: {},
 				});
 			}
+			console.log(success);
 			if (success) {
 				res.json({
 					status: 200,
 					message: success.message,
+					data: success.data,
 				});
 			}
 		});

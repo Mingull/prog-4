@@ -26,31 +26,19 @@ userRouter.put("/:userId", validateToken);
 function validateUserCreate(req: Request, res: Response, next: NextFunction) {
 	const user = req.body as User;
 	if (!user) {
-		res.status(400).json({ status: 400, error: "No user data provided" });
+		res.status(400).json({ status: 400, message: "No user data provided", data: {} });
 		return;
 	}
 	if (!user.firstName) {
-		res.status(400).json({ status: 400, error: "No first name provided" });
+		res.status(400).json({ status: 400, message: "Missing or incorrect firstName field", data: {} });
 		return;
 	}
 	if (!user.lastName) {
-		res.status(400).json({ status: 400, error: "No last name provided" });
-		return;
-	}
-	if (!user.emailAddress) {
-		res.status(400).json({ status: 400, error: "No email address provided" });
+		res.status(400).json({ status: 400, message: "Missing or incorrect lastName field", data: {} });
 		return;
 	}
 	if (!user.emailAddress || !user.emailAddress.includes("@")) {
-		res.status(400).json({ status: 400, error: "Invalid email address" });
-		return;
-	}
-	if (!user.roles) {
-		res.status(400).json({ status: 400, error: "No roles provided" });
-		return;
-	}
-	if (!user.street) {
-		res.status(400).json({ status: 400, error: "No street provided" });
+		res.status(400).json({ status: 400, message: "Missing or incorrect emailAddress field", data: {} });
 		return;
 	}
 
