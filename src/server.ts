@@ -3,9 +3,7 @@ import express from "express";
 import { authRouter, userRouter } from "./routes/index.js";
 dotenv.config();
 
-const baseurl = (process.env.NODE_ENV = "development"
-	? "http://localhost:3000"
-	: "https://ncpw-plug.azurewebsites.net");
+const baseurl = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://ncpw-plug.azurewebsites.net";
 export const app = express();
 
 app.use(express.json()); // for parsing application/json
