@@ -9,7 +9,7 @@
 		"dev": "tsx watch src/server.ts",
 		"dev:old": "tsup --watch --onSuccess \"node ./dist/server.js\"",
 		"dev:older": "nodemon  -e \"ts\" --exec \"node --loader ts-node/esm ./src/server.ts\"",
-		"test": "node ./node_modules/mocha/bin/mocha --reporter spec --exit"
+		"test": "vitest"
 	},
 	"keywords": [],
 	"author": "Mingull",
@@ -20,7 +20,9 @@
 		"dotenv": "^16.4.5",
 		"express": "^4.19.2",
 		"jsonwebtoken": "^9.0.2",
+		"msw": "^2.3.1",
 		"mysql2": "^3.9.7",
+		"vitest": "^1.6.0",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
