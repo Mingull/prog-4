@@ -10,7 +10,7 @@
 		"dev:old": "tsup --watch --onSuccess \"node ./dist/server.js\"",
 		"dev:older": "nodemon  -e \"ts\" --exec \"node --loader ts-node/esm ./src/server.ts\"",
 		"test": "vitest run",
-		"test-js": "vitest --js"
+		"test-js": "vitest --loader ts-node/esm run"
 	},
 	"keywords": [],
 	"author": "Mingull",

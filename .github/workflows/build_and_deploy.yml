@@ -69,7 +69,8 @@ jobs:
                   mysql -uroot -p${{env.MYSQL_ROOT_PASSWORD}} ${{env.DB_DATABASE}} -e "SHOW TABLES;"
 
             - name: npm test
-              run: npm test
+              # run the as es module
+              run: npm test-js
               # -- --DB_PASSWORD $MYSQL_ROOT_PASSWORD --DB_USER root --DB_NAME $DB_DATABASE --DB_PORT $DB_PORT
     # deploy:
     #     runs-on: ubuntu-latest
