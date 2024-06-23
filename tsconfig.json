@@ -12,7 +12,7 @@
 		"skipLibCheck": false,
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
-		"noEmit": true,
+		"noEmit": false,
 		"outDir": "dist"
 	},
 	"exclude": ["node_modules", "tsup.config.ts", "test/**/*", "dist"],
