@@ -9,7 +9,7 @@
 		"dev": "tsx watch src/server.ts",
 		"dev:old": "tsup --watch --onSuccess \"node ./dist/server.js\"",
 		"dev:older": "nodemon  -e \"ts\" --exec \"node --loader ts-node/esm ./src/server.ts\"",
-		"test": "vitest",
+		"test": "vitest run",
 		"test-js": "vitest --js"
 	},
 	"keywords": [],
@@ -30,12 +30,12 @@
 		"@types/express": "^4.17.21",
 		"@types/jsonwebtoken": "^9.0.6",
 		"@types/node": "^20.12.7",
+		"msw": "^2.3.1",
 		"nodemon": "^3.1.0",
 		"ts-node": "^10.9.2",
 		"tsup": "^8.0.2",
 		"tsx": "^4.11.2",
 		"typescript": "^5.4.5",
-		"vitest": "^1.6.0",
-		"msw": "^2.3.1"
+		"vitest": "^1.6.0"
 	}
 }

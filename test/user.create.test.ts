@@ -1,12 +1,5 @@
-import { http } from "msw";
 import { setupServer } from "msw/node";
-import { expect } from "vitest";
-import { afterEach } from "vitest";
-import { afterAll } from "vitest";
-import { beforeAll } from "vitest";
-import { beforeEach, describe, it } from "vitest";
-
-const endpointToTest = "/api/user";
+import { beforeEach, describe, expect, it } from "vitest";
 
 describe("User endpoint", () => {
 	const server = setupServer();
@@ -18,10 +11,10 @@ describe("User endpoint", () => {
 		console.log("Before each test");
 		// console.log(v);
 	});
-	beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+	// beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 
-	afterAll(() => server.close());
-	afterEach(() => server.resetHandlers());
+	// afterAll(() => server.close());
+	// afterEach(() => server.resetHandlers());
 
 	it("Moet een nieuwe user kunnen registreren", async (v) => {
 		// Arrange
