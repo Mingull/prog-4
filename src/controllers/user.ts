@@ -189,7 +189,8 @@ export const userController = {
 			const [deleteUserResults] = await connection.query("SELECT * FROM `user` WHERE id = ?", [userId]);
 
 			if (Array.isArray(deleteUserResults) && deleteUserResults.length > 0) {
-				await connection.query("UPDATE `user` SET `isActive` = 0 WHERE `id` = ?", [userId]);
+				// await connection.query("UPDATE `user` SET `isActive` = 0 WHERE `id` = ?", [userId]);
+				await connection.query("DELETE FROM `user` WHERE `id` = ?", [userId]);
 				res.json({
 					status: 200,
 					message: `User deleted success.`,
