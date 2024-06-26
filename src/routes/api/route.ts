@@ -9,8 +9,8 @@ const router = Router();
 router.get("/info", (req, res) => {
 	res.json({
 		status: 200,
+		message: "Hier zijn de beschikbare endpoints:",
 		result: {
-			message: "Hier zijn de beschikbare endpoints:",
 			links: {
 				auth: { login: { method: "POST", url: `${baseurl}/api/auth/login` } },
 				meals: {
