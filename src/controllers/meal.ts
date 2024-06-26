@@ -118,8 +118,6 @@ export const mealController = {
 			);
 			const [results] = await connection.query("SELECT * from `meal` WHERE `id` = ?", [mealId]);
 
-			console.log(results);
-
 			if (Array.isArray(results) && results.length > 0) {
 				res.json({
 					status: 200,
